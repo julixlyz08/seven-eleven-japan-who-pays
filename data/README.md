@@ -24,6 +24,7 @@ All files were downloaded on October 15, 2026.
 | `cpi/` | `01g` | Consumer price index, 2020 base, via [e-Stat](https://www.e-stat.go.jp/stat-search/files?toukei=00200573): by category, and by item (includes bento, onigiri, cigarettes) | Jan 1970 – Aug 2026, CSV (Shift-JIS) | Part 2 |
 | `population/` | `01g` | Population estimates by prefecture via [e-Stat](https://www.e-stat.go.jp/stat-search/files?toukei=00200524), total and by age group | Oct 1, 2024 (latest yearly release) | Part 1 |
 | `stations/` | `01h` | [MLIT National Land Numerical Info S12](https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-S12-2024.html): every railway station with daily passenger counts (GeoJSON) | S12-25 release | Part 1 |
+| `seven_i_reports/` | `01i` | [Seven & i Corporate Outline FY2025](https://www.7andi.com/en/ir/library/co.html): 7-Eleven Japan yearly figures (sales by product group, margins, store types, openings) and the major chains' store counts | FY2015 – FY2025, PDF | Parts 2–4 |
 | `sej_prefecture/` | by hand | [7-Eleven store map](https://www.sej.co.jp/company/tenpo.html) image, transcribed into `data/manual/` | End of Sep 2026 | Part 1 |
 
 ## Typed in by hand (`data/manual/`)
@@ -39,7 +40,13 @@ All files were downloaded on October 15, 2026.
 | File | Script | What it holds | Checks it passes |
 |---|---|---|---|
 | `seven_eleven_japan_monthly.csv` | `02a` | 7-Eleven Japan, Mar 2015 – Sep 2026 (139 months): same-store sales, customers and spend, total-store sales (all % change vs. same month last year), store count | No missing months; overlapping files agree; sales growth = customers × spend to within 0.14 points |
+| `seven_eleven_japan_annual.csv` | `02c` | 7-Eleven Japan, FY2015 – FY2025: chain sales by product group, gross margins, same-store growth, daily sales per store, store counts by contract type, openings and closures | Product groups add up to total sales; year-end store counts equal the monthly February counts |
+| `chain_store_counts.csv` | `02c` | Store counts of 7-Eleven (incl. Okinawa), Lawson, FamilyMart and others, FY2020 – FY2025 | Chains add up to the nationwide total |
+| `meti_national_monthly.csv` | `02d` | METI retail survey, Jan 2014 – Aug 2026: convenience stores, drugstores (incl. food) and supermarket food; levels and published growth rates | Growth rates as published (adjusted for sample redraws) |
+| `meti_regional_monthly.csv` | `02d` | Same, by METI regional bureau: convenience-store and drugstore sales and store counts | |
 | `jfa_convenience_monthly.csv` | `02b` | All JFA member chains, Jan 2005 – Aug 2026 (260 months): sales, stores, customers, spend per customer (levels and % change), all stores and same stores | 2026 reports' "last year" figures match the time series to within 0.05%; sales = customers × spend to within 0.01% |
+
+Part 2's analysis scripts (`03`–`06`) also write their results to `data/processed/part2_*.csv`.
 
 ## Things to know before using the data
 
@@ -51,4 +58,6 @@ All files were downloaded on October 15, 2026.
 - **Some 2026 JFA reports scramble their text.** The cleaner reads figures by position on the page instead.
 - **JFA counts all member chains, 7-Eleven included.** "Everyone except 7-Eleven" has to be derived.
 - **OSM covers about 80% of real stores** (17,617 name matches for 7-Eleven vs. 21,956 official). Coverage must be checked by prefecture before comparing densities.
+- **METI sales levels jump when the survey sample is redrawn** (convenience stores: Jan 2012, Jan 2017, Mar 2021). Use the published growth rates, which are adjusted, rather than growth computed from levels.
+- **METI groups Kyushu and Okinawa** for convenience stores but not for drugstores.
 - **Scraping notes:** JFA only returns PDFs to browser-like requests with the page as referer; Overpass rejects browser-like requests (406) and wants a named client; METI's own site blocks scripts, so its files come from e-Stat.
