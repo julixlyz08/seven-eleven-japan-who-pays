@@ -6,17 +6,79 @@ The project uses only public data: Seven & i's own filings, industry and governm
 
 | Part | Question | Main skills | Status |
 |---|---|---|---|
-| 1. Location advantage | Does 7-Eleven's habit of clustering stores show in the map, and where are stores "missing"? | Spatial statistics, site-selection model | To do |
+| 1. Where the stores are | Does 7-Eleven's habit of clustering stores show in the map, and where are stores "missing"? | Spatial statistics, permutation test, site-selection model | **Done** |
 | 2. Where the customers went | Is 7-Eleven still growing once inflation is removed, and are drugstores taking its shoppers? | Time-series decomposition, panel regression, forecasting | **Done** |
 | 3. Who pays | When wages and prices rise, does head office or the store owner absorb it? | Franchise unit economics, Monte Carlo | To do |
 | 4. What it's worth | What is the market paying for the Japanese stores alone? | Sum-of-the-parts valuation | To do |
 
-## Key findings so far (Part 2)
+## Key findings so far
+
+**Part 1: where the stores are**
+
+- **7-Eleven's famous clustering doesn't show up at street level. If anything, the opposite.** Within 250 m of a 7-Eleven, other convenience stores are 7-Elevens only 0.75 times as often as its market share would predict; FamilyMart's ratio is 1.09. When chain labels are shuffled at random, 95% of results fall between 0.97 and 1.03. 7-Eleven keeps its own stores apart, and leaves the closest sites to rivals.
+- **Its dominance is regional, not local.** 7-Eleven has 53-60% of convenience stores in its strongholds (Saga, Yamaguchi, Kumamoto, Tochigi, Gunma) and about 20% in the last prefectures it entered (Aomori, Kochi and Tottori in 2015, Okinawa in 2019).
+- **All three big chains go to the same kind of place:** more residents, more one-person households, fewer elderly. A 10-point higher share of residents aged 65+ means about 9% fewer stores. 7-Eleven depends least on railway stations.
+- **The model finds 153 "white-space" areas** where it expects at least two 7-Elevens, none is mapped, and rivals are trading. They are mostly in Aichi and Hyogo, where 7-Eleven's share is below average.
+
+**Part 2: where the customers went**
 
 - **Sales growth since 2019 is all price.** Same-store sales are up 7%, but convenience-store prices are up 28%, more than twice the 13% rise in overall consumer prices. In real terms, 7-Eleven's stores sell about 16% less than before COVID: 11% fewer customers, each buying 6% less.
 - **7-Eleven has lost its edge over its rivals.** Before 2020 it beat the rest of the industry on customer growth in 70% of months; since 2022, in 12%. It held up better in the 2020-21 slump, but rivals have since won back more customers.
 - **Against its own pre-2020 path, 7-Eleven has lost about twice as much as its rivals.** Before COVID its real sales were almost flat (-0.4% a year) while rivals' were shrinking (-1.6% a year). Today both are about 16-17% below their 2019 level, so 7-Eleven is 14% below its own trend, against 8% for rivals.
 - **Drugstores are the competitor people overlook.** Their food sales have grown 2.4 times since 2015, from about an eighth to a quarter of convenience-store sales. Regions where drugstores expanded fastest (Tohoku, Chubu) had the weakest convenience-store growth, and this holds when comparing regions in the same month.
+
+---
+
+## Part 1: Where the stores are
+
+### Data
+
+Store locations come from OpenStreetMap (48,973 convenience stores, October 2026). Each store is classified by chain from its name and brand tags; 353 entries belong to chains that no longer exist (Circle K Sunkus and others, converted to FamilyMart or Lawson by 2019) and are dropped as out of date. Stores, the 2020 census population on a 1 km grid (176,605 squares, 126.1 million people) and railway stations with daily passengers are placed in prefectures using the official boundary map.
+
+**How complete is OpenStreetMap?** 7-Eleven publishes its store count by prefecture, which gives a direct test: OSM has 81% of 7-Eleven stores nationally, from 45% (Shimane) to 99% (Wakayama). Rival counts by prefecture are estimated by scaling their OSM counts by 7-Eleven's coverage in the same prefecture (pulled toward the national rate where 7-Eleven has few stores, since a new entrant is less well mapped). The estimates add up to within 3% of FamilyMart's and Lawson's official national totals.
+
+![Stores per 10,000 residents by prefecture](reports/figures/part1_density_by_prefecture.png)
+
+- **7-Eleven has 38% of Japan's convenience stores**, but from 18% in Aomori to 60% in Saga. Its strongholds are northern Kanto (Tochigi, Gunma, Fukushima) and western Japan (Saga, Yamaguchi, Kumamoto); it is weakest in the last prefectures it entered: Aomori, Kochi and Tottori (2015) and Okinawa (2019).
+- **Store density varies less than chain share.** Most prefectures have 4-5 convenience stores per 10,000 residents, whoever runs them.
+
+### Does 7-Eleven cluster its stores?
+
+7-Eleven is known for a "dominant area" strategy: opening many stores close together so delivery routes and advertising cover a dense patch. The test: for each store, what share of its neighbours within a given distance belong to the same chain, compared with that chain's share of stores in the prefecture? 1.0 means no more clustered than market share implies.
+
+![Clustering ratio by distance](reports/figures/part1_clustering.png)
+
+| Same-chain neighbours vs. market share | 250 m | 500 m | 1 km | 2 km | 20 km |
+|---|---|---|---|---|---|
+| 7-Eleven | **0.75** | **0.83** | 0.92 | 0.96 | 0.99 |
+| FamilyMart | 1.09 | 1.07 | 1.06 | 1.05 | 1.02 |
+| Lawson | 0.95 | 0.97 | 0.99 | 1.01 | 1.00 |
+| *Random labels (200 shuffles within prefectures), 95% range* | | *0.97-1.03* | *0.98-1.02* | *0.98-1.02* | |
+
+- **7-Eleven avoids itself at short range.** A 7-Eleven's nearest neighbours are rivals more often than its market share predicts. This isn't an artefact of 7-Eleven being stronger in suburbs: measured against its share of stores within 5 km of each store, the 250 m ratio is still 0.77.
+- **Lawson is within the random range** from 500 m to 2 km (0.97-1.01): no clustering either way.
+- **FamilyMart is the one that clusters,** probably a legacy of its mergers: Circle K Sunkus and am/pm stores were converted where those chains had dense networks.
+- **So "dominance" works at the scale of a region, not a street.** A plausible reading is that 7-Eleven spaces stores to limit cannibalisation between franchise owners, while still saturating whole regions (see the shares above). The data can't show intent.
+
+### What predicts a convenience store, and where is 7-Eleven missing?
+
+A Poisson model predicts the number of stores in each 1 km square from: residents in the square, residents in the 8 squares around it, share aged 65+, share of one-person households, railway passengers, and a prefecture effect (which also absorbs differences in map coverage). It is fitted for all chains together and for each of the big three.
+
+![What each chain's stores follow](reports/figures/part1_site_model.png)
+
+| Effect on expected stores | All chains | 7-Eleven | FamilyMart | Lawson |
+|---|---|---|---|---|
+| 2.7x more residents in the square | +0.69 log points | +0.72 | +0.67 | +0.65 |
+| 2.7x more residents nearby | +0.25 | +0.26 | +0.30 | +0.29 |
+| 2.7x more railway passengers | +0.06 | **+0.05** | +0.07 | +0.06 |
+| +10 points one-person households | +8% | +8% | +9% | +9% |
+| +10 points aged 65+ | -9% | -9% | -9% | -9% |
+
+- **The three chains look for the same things.** The only clear difference: 7-Eleven depends less on railway stations than FamilyMart (95% ranges don't overlap) and slightly more on residents.
+- **Ageing is a headwind for everyone.** Areas with more elderly residents have fewer stores, even with the same population. Japan's population is ageing fastest outside the big cities.
+- **Validation:** fitted without prefecture effects on four-fifths of prefectures, the model explains 69% of the variation (deviance) in store counts in the held-out fifth. At the level of 3 x 3 km blocks, predicted and actual store counts correlate at 0.42, so it captures broad demand, not exact sites.
+
+**White space.** Blocks of 3 x 3 km where the model expects at least two 7-Elevens, none is mapped, and at least three rival stores are (so the area is mapped and has demand): 153 blocks, most in Aichi (17) and Hyogo (13). The largest are around Ayaragi (Shimonoseki, Yamaguchi), Kuki (Saitama), Kongo and Sayama (south Osaka) and Nomachi (Kanazawa). With OSM missing about a fifth of stores, each is a lead to check on a map, not a confirmed gap. The full list is in [data/processed/part1_white_space.csv](data/processed/part1_white_space.csv).
 
 ---
 
@@ -98,7 +160,7 @@ An ARIMA model is fitted to 7-Eleven's monthly real sales growth from March 2016
 
 ## Data and method notes
 
-Sources, download scripts and the traps found in the raw files are documented in [data/README.md](data/README.md). Scripts run in order from `src/`: `01*` download, `02*` clean, `03-06` are Part 2's analysis.
+Sources, download scripts and the traps found in the raw files are documented in [data/README.md](data/README.md). Scripts run in order from `src/`: `01*` download, `02*` clean, `03-06` are Part 2's analysis, `07-09` Part 1's.
 
 | Term | Definition |
 |---|---|
@@ -106,6 +168,14 @@ Sources, download scripts and the traps found in the raw files are documented in
 | Fiscal year | Seven & i's runs March to February; FY2025 = March 2025 - February 2026 |
 | Rest of industry | JFA member chains (FamilyMart, Lawson, Ministop, Daily Yamazaki, Seicomart, Poplar) minus 7-Eleven |
 | Real basket | Spend per customer divided by the convenience-store price index |
+
+## Limitations (Part 1)
+
+- **OpenStreetMap is incomplete and partly out of date.** It has about 81% of 7-Eleven's stores, unevenly by prefecture; rivals' coverage is assumed similar within a prefecture (checked only against national totals). Random gaps make clustering estimates noisier but not biased; gaps concentrated in particular areas could bias the site model and create false "white space".
+- **The census grid is from 2020**; stores are from 2026.
+- **Station passengers are by operator**, so a station served by several companies counts each operator's passengers.
+- **Simplified prefecture boundaries** (Global Map Japan) put 74 seaside stores just offshore; they are given the nearest prefecture.
+- **The site model describes where stores are, not where they would be profitable.** Rival presence is not an input, so "white space" means demand without a 7-Eleven, which could also mean a site 7-Eleven tried and left.
 
 ## Limitations (Part 2)
 

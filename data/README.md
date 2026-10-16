@@ -25,6 +25,8 @@ All files were downloaded on October 15, 2026.
 | `population/` | `01g` | Population estimates by prefecture via [e-Stat](https://www.e-stat.go.jp/stat-search/files?toukei=00200524), total and by age group | Oct 1, 2024 (latest yearly release) | Part 1 |
 | `stations/` | `01h` | [MLIT National Land Numerical Info S12](https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-S12-2024.html): every railway station with daily passenger counts (GeoJSON) | S12-25 release | Part 1 |
 | `seven_i_reports/` | `01i` | [Seven & i Corporate Outline FY2025](https://www.7andi.com/en/ir/library/co.html): 7-Eleven Japan yearly figures (sales by product group, margins, store types, openings) and the major chains' store counts | FY2015 – FY2025, PDF | Parts 2–4 |
+| `boundaries/` | `01j` | Simplified prefecture boundaries (GeoJSON) from [Global Map Japan](https://www.gsi.go.jp/kankyochiri/gm_jpn.html) (GSI), via [dataofjapan/land](https://github.com/dataofjapan/land). Free for non-commercial use with credit | 47 prefectures | Part 1 |
+| `population_grid/` | `01k` | 2020 census population on the 1 km grid via [e-Stat](https://www.e-stat.go.jp/gis) (T001140): residents by age group, households, one-person households. Only map tiles containing a store (127) | 2020 census | Part 1 |
 | `sej_prefecture/` | by hand | [7-Eleven store map](https://www.sej.co.jp/company/tenpo.html) image, transcribed into `data/manual/` | End of Sep 2026 | Part 1 |
 
 ## Typed in by hand (`data/manual/`)
@@ -44,9 +46,12 @@ All files were downloaded on October 15, 2026.
 | `chain_store_counts.csv` | `02c` | Store counts of 7-Eleven (incl. Okinawa), Lawson, FamilyMart and others, FY2020 – FY2025 | Chains add up to the nationwide total |
 | `meti_national_monthly.csv` | `02d` | METI retail survey, Jan 2014 – Aug 2026: convenience stores, drugstores (incl. food) and supermarket food; levels and published growth rates | Growth rates as published (adjusted for sample redraws) |
 | `meti_regional_monthly.csv` | `02d` | Same, by METI regional bureau: convenience-store and drugstore sales and store counts | |
+| `stores.csv` | `02e` | Every OSM convenience store: chain (from name and brand tags), prefecture, 1 km grid square | 74 seaside stores fall just outside the simplified boundaries and get the nearest prefecture |
+| `population_grid.csv` | `02e` | 1 km squares with centre coordinates, prefecture, residents, ages, households | Adds up to 126.1 million, the 2020 census total |
+| `stations.csv` | `02e` | Railway stations (station x operator) with daily passengers, latest year in the file | Duplicate per-line listings of the same station removed |
 | `jfa_convenience_monthly.csv` | `02b` | All JFA member chains, Jan 2005 – Aug 2026 (260 months): sales, stores, customers, spend per customer (levels and % change), all stores and same stores | 2026 reports' "last year" figures match the time series to within 0.05%; sales = customers × spend to within 0.01% |
 
-Part 2's analysis scripts (`03`–`06`) also write their results to `data/processed/part2_*.csv`.
+Parts 1 and 2's analysis scripts (`03`–`09`) also write their results to `data/processed/part2_*.csv`.
 
 ## Things to know before using the data
 
@@ -57,6 +62,8 @@ Part 2's analysis scripts (`03`–`06`) also write their results to `data/proces
 - **JFA same-store figures are as published.** They compare stores open in both years, so "last year" differs from report to report and can't be rebuilt from the levels.
 - **Some 2026 JFA reports scramble their text.** The cleaner reads figures by position on the page instead.
 - **JFA counts all member chains, 7-Eleven included.** "Everyone except 7-Eleven" has to be derived.
+- **OSM includes 353 stores of chains that no longer exist** (Circle K Sunkus, am/pm, Save On, Coco Store); they are flagged as stale and left out.
+- **The public Overpass servers can't handle a nationwide per-prefecture query**; prefectures come from the boundary file instead.
 - **OSM covers about 80% of real stores** (17,617 name matches for 7-Eleven vs. 21,956 official). Coverage must be checked by prefecture before comparing densities.
 - **METI sales levels jump when the survey sample is redrawn** (convenience stores: Jan 2012, Jan 2017, Mar 2021). Use the published growth rates, which are adjusted, rather than growth computed from levels.
 - **METI groups Kyushu and Okinawa** for convenience stores but not for drugstores.

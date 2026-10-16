@@ -82,6 +82,8 @@ for (chain, r), value in observed.items():
     rows.append({"chain": chain, "radius_km": r, "clustering_ratio": value,
                  "shuffled_mean": null[(chain, r)].mean(),
                  "shuffled_95": null[(chain, r)].quantile(0.95),
+                 "shuffled_low_2_5": null[(chain, r)].quantile(0.025),
+                 "shuffled_high_97_5": null[(chain, r)].quantile(0.975),
                  "share_of_stores_pct": (stores["chain"] == chain).mean() * 100})
 res = pd.DataFrame(rows).sort_values(["radius_km", "clustering_ratio"], ascending=[True, False])
 res.round(3).to_csv(PROCESSED / "part1_clustering.csv", index=False)
@@ -148,8 +150,8 @@ ax.set_ylabel("Same-chain neighbours vs. market share\n(1 = no clustering)")
 ax.set_title("Up close, 7-Eleven keeps its own stores apart")
 ax.legend(loc="lower right")
 fig.text(0.01, 0.01, "Share of a store's neighbours that are the same chain, divided by the chain's share of stores "
-         "in that prefecture.\nWith chain labels shuffled at random within prefectures, the ratio stays within "
-         "0.98-1.02. Source: OpenStreetMap (Oct 2026).", color=style.TEXT_MUTED, fontsize=8)
+         "in that prefecture.\nWith chain labels shuffled at random within prefectures, 95% of results fall within "
+         "0.97-1.03. Source: OpenStreetMap (Oct 2026).", color=style.TEXT_MUTED, fontsize=8)
 plt.tight_layout(rect=(0, 0.06, 1, 1))
 plt.savefig(FIGURES / "part1_clustering.png", dpi=200)
 plt.close()
