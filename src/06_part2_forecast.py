@@ -4,7 +4,8 @@ Real volume = same-store sales at constant prices (customers x real basket).
 Model: monthly volume growth (vs. a year earlier) before COVID, Mar 2016 - Feb 2020,
 as an ARIMA process with a constant. The forecast runs from Mar 2020 to the latest
 month, and is chained into a level so it can be compared with what happened.
-Uncertainty: 2,000 simulated paths from the fitted model give a 95% range.
+Uncertainty: 2,000 simulated paths from the fitted model give a 95% range
+(fixed random seed, so reruns give identical results).
 
 The same is done for the rest of the industry, so the two gaps can be compared.
 This is a "what if trends had continued" baseline, not a causal estimate: it
@@ -32,7 +33,7 @@ series = {"7-Eleven": real_growth(prices["same_store_sales_yoy_pct"]),
 
 TRAIN = ("2016-03-01", "2020-02-01")
 SIMS = 2000
-np.random.seed(42)  # simulations are reproducible
+rng = np.random.default_rng(42)  # one generator, so simulations are reproducible
 
 
 def rolling12(matrix):
@@ -48,7 +49,7 @@ for name, growth in series.items():
     model = ARIMA(train, order=(1, 0, 0), trend="c").fit()
     n_train, horizon = len(train), len(growth) - len(train)
     sims = model.simulate(nsimulations=horizon, repetitions=SIMS,
-                          anchor="end").to_numpy().reshape(horizon, SIMS)
+                          anchor="end", rng=rng).to_numpy().reshape(horizon, SIMS)
 
     # Actual level: chain growth from a flat first year, then set Mar 2019 - Feb 2020 = 100
     level = np.ones(len(growth)) * 100.0

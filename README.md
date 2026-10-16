@@ -88,7 +88,7 @@ An ARIMA model is fitted to 7-Eleven's monthly real sales growth from March 2016
 |---|---|---|
 | Trend before 2020 | -0.4% a year | -1.6% a year |
 | vs. Mar 2019 - Feb 2020 | -16.4% | -17.0% |
-| vs. its own pre-2020 trend | **-14.0%** (range -17.8 to -10.1) | **-7.6%** (range -9.4 to -5.9) |
+| vs. its own pre-2020 trend | **-13.9%** (range -17.6 to -10.2) | **-7.6%** (range -9.2 to -5.8) |
 
 - The two ranges don't overlap: 7-Eleven has fallen further from its own path than its rivals have from theirs.
 - 7-Eleven's pre-2020 advantage was holding volume steady while the rest of the industry shrank. That advantage is gone.
