@@ -1,0 +1,14 @@
+# Raw downloads, rebuilt by the src/01_* scripts
+data/raw/
+
+# Local SQLite database
+data/*.db
+
+# Messy experiments
+scratch/
+
+# Python environment and clutter
+.venv/
+__pycache__/
+*.pyc
+.DS_Store

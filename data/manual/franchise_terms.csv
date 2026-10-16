@@ -1,0 +1,25 @@
+contract,term,value,unit,notes,source
+type_a,charge_rate,45,% of monthly gross profit,Owner provides land and building,https://www.sej.co.jp/owner/type-a/
+type_a,charge_rate_24h,43,% of monthly gross profit,24-hour stores,https://www.sej.co.jp/owner/type-a/
+type_a,minimum_guarantee_24h,22000000,yen per year,Head office tops owner income up to this level,https://www.sej.co.jp/owner/type-a/
+type_a,minimum_guarantee_not_24h,19000000,yen per year,,https://www.sej.co.jp/owner/type-a/
+type_a,utilities_hq_share,80,%,,https://www.sej.co.jp/owner/type-a/
+type_a,contract_years,15,years,,https://www.sej.co.jp/owner/type-a/
+type_a,joining_fee,3150000,yen,"Training 550k + opening prep 1.1M + opening capital 1.5M (tax incl.)",https://www.sej.co.jp/owner/type-a/
+type_c,charge_tier_0_2.5m,56,% of monthly gross profit,Head office provides land and building; part of gross profit up to 2.5M yen,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+type_c,charge_tier_2.5m_4m,66,% of monthly gross profit,Part above 2.5M up to 4M yen,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+type_c,charge_tier_4m_5.5m,71,% of monthly gross profit,Part above 4M up to 5.5M yen,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+type_c,charge_tier_above_5.5m,76,% of monthly gross profit,Part above 5.5M yen,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+type_c,reduction_24h,2,% of monthly gross profit,,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+type_c,reduction_multi_store,3,% of monthly gross profit,All stores except the owner's first,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+type_c,reduction_special,1,% of monthly gross profit,Plus a 5-year incentive and other conditional reductions (amounts not published),https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+type_c,utilities_hq_share,80,%,,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+type_c,waste_hq_share,15,%,Cost of discarded stock,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+type_c,contract_years,15,years,,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+new_2027,charge_tier_0_4m,53,% of monthly gross profit,New stores only from about autumn 2027; part of gross profit up to 4M yen,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+new_2027,charge_tier_above_4m,67,% of monthly gross profit,Part above 4M yen,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+new_2027,reduction_24h,200000,yen per month,,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+new_2027,reduction_multi_store,100000,yen per month per store,All stores except the owner's first,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+new_2027,utilities_hq_share,50,%,,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+new_2027,waste_hq_share,50,%,Head office share is capped (cap not published),https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+new_2027,contract_years,10,years,,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
