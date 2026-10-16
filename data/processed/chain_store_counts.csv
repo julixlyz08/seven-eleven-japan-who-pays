@@ -1,0 +1,31 @@
+chain,fiscal_year,stores
+Seven-Eleven,2020,21167
+Seven-Eleven,2021,21327
+Seven-Eleven,2022,21402
+Seven-Eleven,2023,21535
+Seven-Eleven,2024,21743
+Seven-Eleven,2025,21927
+Lawson,2020,14476
+Lawson,2021,14656
+Lawson,2022,14631
+Lawson,2023,14643
+Lawson,2024,14694
+Lawson,2025,14697
+FamilyMart,2020,16646
+FamilyMart,2021,16569
+FamilyMart,2022,16533
+FamilyMart,2023,16271
+FamilyMart,2024,16251
+FamilyMart,2025,16415
+Other CVS,2020,3608
+Other CVS,2021,3379
+Other CVS,2022,3286
+Other CVS,2023,3208
+Other CVS,2024,3161
+Other CVS,2025,3110
+Nationwide,2020,55897
+Nationwide,2021,55931
+Nationwide,2022,55852
+Nationwide,2023,55657
+Nationwide,2024,55849
+Nationwide,2025,56149
