@@ -1,0 +1,4 @@
+case,daily_sales,gross_profit_month,head_office_net,head_office_cost_shares,staff,owner_other_costs,owner_profit,owner_hourly,hq_share_of_extra_gp
+"Established store, current contract",699000.0,6761077.5,3231054.591,343783.75,1845218.487,631441.25,709579.422,2332.864,0.641
+"New store, current contract",612000.0,5919570.0,3225441.1,335845.0,1845218.487,586455.0,-73389.587,-241.281,0.73
+"New store, 2027 contract",612000.0,5919570.0,2844961.9,361150.0,1845218.487,561150.0,307089.613,1009.61,0.67

@@ -34,7 +34,8 @@ All files were downloaded on October 15, 2026.
 | File | What it holds | Check |
 |---|---|---|
 | `sej_stores_by_prefecture_2026-09.csv` | 7-Eleven stores in each of the 47 prefectures, end of September 2026 | Sums to 21,956, the total printed on the map |
-| `franchise_terms.csv` | Type A, Type C and new (2027) contract terms: charge rates, reductions, utility and waste cost shares, minimum guarantee, contract length | Type C and new terms from the official release PDF |
+| `franchise_terms.csv` | Type A, Type C and new (2027) contract terms: charge rates, reductions (which depend on whether monthly gross profit is above ¥5.5M), utility and waste cost shares, minimum guarantees, contract length | Type C tiers and new terms from the official release PDF; reductions and guarantees from the Corporate Outline FY2025 (p. 21) |
+| `store_cost_assumptions.csv` | Low / central / high values for a store's staffing, pay, utilities, discarded stock and other costs (Part 3) | Not published anywhere; each row states its basis |
 | `valuation_inputs.csv` | Couche-Tard and KDDI–Lawson offer prices and dates, Seven & i domestic segment results | Each row links its source |
 
 ## Cleaned tables (`data/processed/`)
@@ -46,12 +47,13 @@ All files were downloaded on October 15, 2026.
 | `chain_store_counts.csv` | `02c` | Store counts of 7-Eleven (incl. Okinawa), Lawson, FamilyMart and others, FY2020 – FY2025 | Chains add up to the nationwide total |
 | `meti_national_monthly.csv` | `02d` | METI retail survey, Jan 2014 – Aug 2026: convenience stores, drugstores (incl. food) and supermarket food; levels and published growth rates | Growth rates as published (adjusted for sample redraws) |
 | `meti_regional_monthly.csv` | `02d` | Same, by METI regional bureau: convenience-store and drugstore sales and store counts | |
+| `minimum_wage.csv` | `02f` | Minimum wage by prefecture and fiscal year, FY2002 – FY2026, with effective dates, plus the weighted national average | 48 rows x 25 years; FY2019 is labelled 令和元年度 (era's first year) in the source |
 | `stores.csv` | `02e` | Every OSM convenience store: chain (from name and brand tags), prefecture, 1 km grid square | 74 seaside stores fall just outside the simplified boundaries and get the nearest prefecture |
 | `population_grid.csv` | `02e` | 1 km squares with centre coordinates, prefecture, residents, ages, households | Adds up to 126.1 million, the 2020 census total |
 | `stations.csv` | `02e` | Railway stations (station x operator) with daily passengers, latest year in the file | Duplicate per-line listings of the same station removed |
 | `jfa_convenience_monthly.csv` | `02b` | All JFA member chains, Jan 2005 – Aug 2026 (260 months): sales, stores, customers, spend per customer (levels and % change), all stores and same stores | 2026 reports' "last year" figures match the time series to within 0.05%; sales = customers × spend to within 0.01% |
 
-Parts 1 and 2's analysis scripts (`03`–`09`) also write their results to `data/processed/part2_*.csv`.
+The analysis scripts (`03`–`10`) also write their results to `data/processed/part2_*.csv`.
 
 ## Things to know before using the data
 

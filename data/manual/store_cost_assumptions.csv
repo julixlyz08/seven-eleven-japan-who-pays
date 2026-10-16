@@ -1,0 +1,9 @@
+parameter,low,central,high,unit,basis
+staff_day,2.0,2.5,3.0,people on shift 06:00-22:00,Typical convenience-store staffing (two at the till plus restocking and fryer at peaks); no published average
+staff_night,1.0,1.5,2.0,people on shift 22:00-06:00,One to two at night; the JFTC 2020 survey found most stores lose money at night
+owner_hours_per_day,8,10,14,hours,Owner and family shifts that replace paid staff; press reports describe 12-16 hour days for owners and store managers
+wage_premium,1.00,1.08,1.20,x local minimum wage,Average pay above the legal minimum (higher in cities and for night shifts)
+employer_oncost,0.05,0.10,0.15,share of wages,Employer social insurance and paid leave on part-time pay
+utilities_month_fy2025,280000,350000,450000,yen per month,Electricity-heavy 24-hour store (fridges and freezers); FY2025 price level
+waste_pct_sales,0.015,0.020,0.030,share of sales at cost,Discarded food at cost price
+other_month_fy2025,120000,200000,300000,yen per month,"Supplies, cash differences, insurance, small repairs; FY2025 price level"

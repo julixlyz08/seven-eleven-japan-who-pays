@@ -8,7 +8,7 @@ The project uses only public data: Seven & i's own filings, industry and governm
 |---|---|---|---|
 | 1. Where the stores are | Does 7-Eleven's habit of clustering stores show in the map, and where are stores "missing"? | Spatial statistics, permutation test, site-selection model | **Done** |
 | 2. Where the customers went | Is 7-Eleven still growing once inflation is removed, and are drugstores taking its shoppers? | Time-series decomposition, panel regression, forecasting | **Done** |
-| 3. Who pays | When wages and prices rise, does head office or the store owner absorb it? | Franchise unit economics, Monte Carlo | To do |
+| 3. Who pays | When wages and prices rise, does head office or the store owner absorb it? | Franchise unit economics, calibration to company accounts, Monte Carlo | **Done** |
 | 4. What it's worth | What is the market paying for the Japanese stores alone? | Sum-of-the-parts valuation | To do |
 
 ## Key findings so far
@@ -19,6 +19,13 @@ The project uses only public data: Seven & i's own filings, industry and governm
 - **Its dominance is regional, not local.** 7-Eleven has 53-60% of convenience stores in its strongholds (Saga, Yamaguchi, Kumamoto, Tochigi, Gunma) and about 20% in the last prefectures it entered (Aomori, Kochi and Tottori in 2015, Okinawa in 2019).
 - **All three big chains go to the same kind of place:** more residents, more one-person households, fewer elderly. A 10-point higher share of residents aged 65+ means about 9% fewer stores. 7-Eleven depends least on railway stations.
 - **The model finds 153 "white-space" areas** where it expects at least two 7-Elevens, none is mapped, and rivals are trading. They are mostly in Aichi and Hyogo, where 7-Eleven's share is below average.
+
+**Part 3: who pays**
+
+- **Head office collects less than its published fee schedule says.** The schedule implies about 62% of an average store's gross profit; Seven & i's accounts imply 49% across the chain. The gap, undisclosed incentives, has grown from 5 to 9 points of gross profit since FY2015.
+- **Even so, rising wages land on the owner.** From FY2019 to FY2025, a typical store's staff costs rose by about ¥318k a month. Head office's net take rose by ¥21k; the owner's profit fell by ¥72k. If the minimum wage reaches ¥1,500 by FY2030, an established owner's profit falls by about half from FY2019 while head office's take grows 14%.
+- **Under the current contract, a typical new store no longer pays its owner a minimum wage.** At FY2026 wages it needs ¥730-910k of sales a day, against ¥612k for the average new store. Openings have fallen from 1,651 (FY2015) to 540 (FY2025).
+- **The 2027 contract fixes that for new stores.** It leaves a typical new store's owner about ¥4.6M a year better off (better in every one of 2,000 simulations), even though owners take on more of the utilities.
 
 **Part 2: where the customers went**
 
@@ -79,6 +86,77 @@ A Poisson model predicts the number of stores in each 1 km square from: resident
 - **Validation:** fitted without prefecture effects on four-fifths of prefectures, the model explains 69% of the variation (deviance) in store counts in the held-out fifth. At the level of 3 x 3 km blocks, predicted and actual store counts correlate at 0.42, so it captures broad demand, not exact sites.
 
 **White space.** Blocks of 3 x 3 km where the model expects at least two 7-Elevens, none is mapped, and at least three rival stores are (so the area is mapped and has demand): 153 blocks, most in Aichi (17) and Hyogo (13). The largest are around Ayaragi (Shimonoseki, Yamaguchi), Kuki (Saitama), Kongo and Sayama (south Osaka) and Nomachi (Kanazawa). With OSM missing about a fifth of stores, each is a lead to check on a map, not a confirmed gap. The full list is in [data/processed/part1_white_space.csv](data/processed/part1_white_space.csv).
+
+---
+
+## Part 3: Who pays
+
+### The contract
+
+Owners of Type C stores (17,329 of 21,564 franchised stores) run the shop; head office provides the building and equipment. Head office takes a share of each store's monthly gross profit on a sliding scale, from 56% on the first ¥2.5M up to 76% on profit above ¥5.5M, minus reductions for 24-hour stores. Two details matter:
+
+- **The charge is calculated before discarded stock is deducted.** Seven & i's own definition of gross profit leaves out "inventory loss, disposal of unsold items". So owners pay the charge on food they throw away, and then bear 85% of its cost. Japan's Supreme Court reviewed this method in 2007.
+- **Head office pays 80% of utilities and 15% of discarded stock,** and tops up the owner's gross profit to ¥20M a year if a store falls short.
+
+The new contract announced in June 2026 (new stores only, from about autumn 2027) has two tiers, 53% and 67%. In return, owners pay 50% of utilities instead of 20%, and head office pays 50% of discarded stock instead of 15%.
+
+### The model
+
+A monthly profit-and-loss for a 24-hour Type C store ([src/franchise_model.py](src/franchise_model.py)): gross profit, minus the charge, staff wages, the owner's share of utilities and discarded stock, and other costs. What's left is the owner's profit, which pays for the owner's and family's own long hours. Sales, margins and contract terms are Seven & i's figures; minimum wages are official, by prefecture. Staffing and costs aren't published, so each has a low, central and high value ([data/manual/store_cost_assumptions.csv](data/manual/store_cost_assumptions.csv)), and every result is also run 2,000 times with those inputs drawn at random.
+
+**Calibration.** Head office's revenue, minus sales at its 158 company-run stores, is roughly what owners pay in charges. Divided by franchise stores' gross profit, that gives the charge actually collected:
+
+| | FY2015 | FY2019 | FY2022 | FY2025 |
+|---|---|---|---|---|
+| Charge implied by Seven & i's accounts | 51.1% | 50.6% | 49.7% | 48.9% |
+| Published Type C schedule, average store | 60.9% | 61.1% | 61.3% | 61.8% |
+| Gap: undisclosed incentives (Type A and C) | 5.0 pts | 6.2 pts | 7.5 pts | 8.9 pts |
+
+The model applies that gap to established stores. New stores don't get the "5-year incentive", so they are modelled on the published schedule.
+
+**Check against a leaked internal simulation.** Diamond reported in October 2025 that 7-Eleven's own simulation shows owner profit falling to about a third if the minimum wage reaches ¥1,500 with sales unchanged. The model gives 0.14 at its central values, with a middle-90% range of -0.87 to 0.51 across draws: the leaked figure sits inside it, and the model is if anything more pessimistic.
+
+### Where the gross profit goes
+
+![Where a store's gross profit goes](reports/figures/part3_gross_profit_split.png)
+
+| FY2026, per store per year (central values) | Established store, current contract | New store, current contract | New store, 2027 contract |
+|---|---|---|---|
+| Sales per day | ¥699k | ¥612k | ¥612k |
+| Owner's profit | ¥8.5M | ¥-0.9M | ¥3.7M |
+| Owner's profit, 90% range (Monte Carlo) | ¥3.6M to ¥12.8M | ¥-5.0M to ¥2.7M | ¥-0.2M to ¥7.4M |
+| Owner's profit per own hour (10 h a day) | ¥2,333 | loss | ¥1,010 |
+| Head office's share of one extra yen of gross profit | 64% | 73% | 67% |
+
+- **Price rises are shared; wage rises are not.** When prices lift gross profit, head office takes 64-73% of every extra yen. When wages rise, the owner pays 100%.
+- **The 2027 contract is a better deal for a new store.** Lower charge rates more than make up for paying 50% of utilities. The owner comes out ahead in all 2,000 simulations, by about ¥4.6M a year (median).
+
+### Who absorbed the last six years, and the next five
+
+![Who absorbs rising costs](reports/figures/part3_who_absorbs.png)
+
+| Established store, FY2019 = 100 | FY2022 | FY2025 | FY2030 (projection) |
+|---|---|---|---|
+| Minimum wage | 107 | 122 | 164 |
+| Sales per store | 102 | 107 | 118 |
+| Head office's take per store | 98 | 101 | 114 |
+| Owner's profit per store | 100 | 92 | 46 |
+
+- **FY2019-FY2025:** staff costs per store rose about ¥318k a month. Head office's take barely moved (+¥21k) because it gave back more in incentives; the owner's profit fell ¥72k (-8%). Press reports of franchise profit falling 4.3% in FY2024 and again in FY2025 point the same way.
+- **To FY2030:** with the minimum wage reaching ¥1,500 and sales growing 2% a year, an established owner's profit halves from its FY2019 level (90% range: from roughly flat to a loss), unless incentives grow further.
+
+### How much a store needs to sell
+
+The daily sales at which the owner earns at least the local minimum wage for their own hours, FY2026:
+
+| | Lowest-wage prefectures (Miyazaki, Kochi, Okinawa) | Osaka | Tokyo, Kanagawa |
+|---|---|---|---|
+| Established store, current contract | ¥518k | ¥612k | ¥644k |
+| New store, current contract | ¥726k | ¥864k | ¥909k |
+| New store, 2027 contract | ¥563k | ¥663k | ¥695k |
+| *Average new store's actual sales (FY2025)* | *¥612k* | *¥612k* | *¥612k* |
+
+Under the current contract, a typical new store falls short everywhere. Under the 2027 contract, it clears the bar in low-wage prefectures but still not in the big cities, where wages are highest. That fits what the company has been doing: openings fell from 1,651 in FY2015 to 540 in FY2025.
 
 ---
 
@@ -160,7 +238,7 @@ An ARIMA model is fitted to 7-Eleven's monthly real sales growth from March 2016
 
 ## Data and method notes
 
-Sources, download scripts and the traps found in the raw files are documented in [data/README.md](data/README.md). Scripts run in order from `src/`: `01*` download, `02*` clean, `03-06` are Part 2's analysis, `07-09` Part 1's.
+Sources, download scripts and the traps found in the raw files are documented in [data/README.md](data/README.md). Scripts run in order from `src/`: `01*` download, `02*` clean, `03-06` are Part 2's analysis, `07-09` Part 1's, `10` Part 3's (with the store model in `franchise_model.py`).
 
 | Term | Definition |
 |---|---|
@@ -176,6 +254,15 @@ Sources, download scripts and the traps found in the raw files are documented in
 - **Station passengers are by operator**, so a station served by several companies counts each operator's passengers.
 - **Simplified prefecture boundaries** (Global Map Japan) put 74 seaside stores just offshore; they are given the nearest prefecture.
 - **The site model describes where stores are, not where they would be profitable.** Rival presence is not an input, so "white space" means demand without a 7-Eleven, which could also mean a site 7-Eleven tried and left.
+
+## Limitations (Part 3)
+
+- **Store costs are assumptions.** Staffing, pay above the minimum, utilities, discarded stock and other costs aren't published; results are shown across their plausible ranges, but the ranges themselves are judgement.
+- **The undisclosed incentives are inferred**, assuming head office's revenue (minus company-run store sales) is all franchise charges and that Type A and C stores get the same incentive share. Other operating revenue would make the true incentive smaller.
+- **One typical store, not the distribution.** Real stores differ in sales, staffing and hours; the tiered charge means a chain average isn't the average store's outcome.
+- **The 2027 contract's minimum guarantee and the cap on head office's share of discarded stock aren't published**; the guarantee is assumed unchanged and the cap not binding.
+- **Type A stores** (owner provides the building, 45% charge) are not modelled; they also bear property costs.
+- **Prefecture break-evens use national average sales and costs**; only wages vary by prefecture.
 
 ## Limitations (Part 2)
 

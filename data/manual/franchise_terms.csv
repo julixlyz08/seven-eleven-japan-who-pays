@@ -10,9 +10,12 @@ type_c,charge_tier_0_2.5m,56,% of monthly gross profit,Head office provides land
 type_c,charge_tier_2.5m_4m,66,% of monthly gross profit,Part above 2.5M up to 4M yen,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
 type_c,charge_tier_4m_5.5m,71,% of monthly gross profit,Part above 4M up to 5.5M yen,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
 type_c,charge_tier_above_5.5m,76,% of monthly gross profit,Part above 5.5M yen,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
-type_c,reduction_24h,2,% of monthly gross profit,,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+type_c,reduction_24h,2,% of monthly gross profit,Applies when monthly gross profit is over 5.5M yen (Type A and C),https://www.7andi.com/en/ir/library/co.html
+type_c,reduction_24h_monthly_high_gp,35000,yen per month,"Also applies when monthly gross profit is over 5.5M yen (with the 2% and 1%)",https://www.7andi.com/en/ir/library/co.html
+type_c,reduction_24h_monthly_low_gp,200000,yen per month,Replaces the % reductions when monthly gross profit is under 5.5M yen,https://www.7andi.com/en/ir/library/co.html
+type_c,minimum_guarantee_24h,20000000,yen per year,Owner's gross profit after the charge is topped up to this level,https://www.7andi.com/en/ir/library/co.html
 type_c,reduction_multi_store,3,% of monthly gross profit,All stores except the owner's first,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
-type_c,reduction_special,1,% of monthly gross profit,Plus a 5-year incentive and other conditional reductions (amounts not published),https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
+type_c,reduction_special,1,% of monthly gross profit,"Since Sep 2017, when monthly gross profit is over 5.5M yen; plus a 5-year incentive and other conditional reductions (amounts not published)",https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
 type_c,utilities_hq_share,80,%,,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
 type_c,waste_hq_share,15,%,Cost of discarded stock,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
 type_c,contract_years,15,years,,https://www.sej.co.jp/company/news_release/news/2026/202606191500.html
