@@ -139,12 +139,10 @@ ax.axhline(1, color=style.TEXT_MUTED, linewidth=0.8)
 for chain in MAIN:
     d = profile[profile["chain"] == chain]
     ax.plot(d["radius_km"], d["vs_prefecture_share"], color=colors[chain], marker="o", markersize=5, label=chain)
-    ax.annotate(chain, (d["radius_km"].iloc[-1], d["vs_prefecture_share"].iloc[-1]), xytext=(8, 0),
-                textcoords="offset points", va="center", color=style.TEXT, fontsize=10)
 ax.set_xscale("log")
 ax.set_xticks([0.25, 0.5, 1, 2, 5, 10, 20], ["250 m", "500 m", "1 km", "2 km", "5 km", "10 km", "20 km"])
 ax.minorticks_off()
-ax.set_xlim(0.2, 40)
+ax.set_xlim(0.2, 25)
 ax.set_xlabel("Distance to neighbouring stores")
 ax.set_ylabel("Same-chain neighbours vs. market share\n(1 = no clustering)")
 ax.set_title("Up close, 7-Eleven keeps its own stores apart")
