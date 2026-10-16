@@ -55,6 +55,8 @@ WANTED = {
     "Directly operated stores": "stores_company_run",
     "Operating income": "operating_income_myen",
     "Revenues from operations": "revenue_myen",
+    "Net income": "net_income_myen",
+    "EBITDA": "ebitda_myen",
 }
 table = {}
 for line in sej_page.splitlines():

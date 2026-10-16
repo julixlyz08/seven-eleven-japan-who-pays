@@ -1,9 +1,19 @@
 item,value,unit,date,notes,source
 couche_tard_offer_per_share,2600,yen,2024-10,Raised offer (USD 18.19); valued Seven & i at about 7 trillion yen,https://insideretail.asia/2025/07/16/seven-i-loses-couche-tard-47-billion-takeover-bid/
+couche_tard_offer_ev_ebitda_low,7,x EBITDA,2024-10,TD Cowen: revised bid about 7x EBITDA after synergies and divestitures,https://bnnbloomberg.ca/business/international/2024/10/09/couche-tard-cant-boost-seven-i-bid-much-higher-than-47-billion-analysts-say
+north_america_multiple_in_bid,11,x EBITDA,2024-08,Desjardins: first bid implied about 11x for the North American business (high end of Couche-Tard's deals),https://www.theglobeandmail.com/business/article-couche-tard-7-eleven-purchase
+lawson_tender_offer_per_share,10360,yen,2024-02-06,KDDI tender offer; 16% premium to prior close of 8913 yen,https://www.cnbc.com/2024/02/07/lawson-faces-privatization-bid-from-kddi.html
+lawson_eps_fy2023,521.08,yen,FY ended Feb 2024,Basic EPS (IFRS) in the results used for the offer; offer = about 20x earnings,https://www2.jpx.co.jp/disc/26510/140120240411568832.pdf
+shares_issued_after_cancellation,2320258349,shares,2026-07-15,"After cancelling 284,297,500 treasury shares bought under the Apr 2025 buyback (completed by Feb 28, 2026)",https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260709/20260708590086.pdf
+treasury_shares_after_cancellation,5486242,shares,2026-07-15,Excludes shares held in trust for incentive plans,https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260709/20260708590086.pdf
+interest_bearing_debt,2230018,million yen,2026-02-28,Consolidated; excludes lease liabilities,https://www.7andi.com/en/ir/library/co.html
+cash,426146,million yen,2026-02-28,Cash and cash equivalents at fiscal year-end,https://www.7andi.com/en/ir/library/co.html
+non_controlling_interests,27743,million yen,2026-02-28,Book value,https://www.7andi.com/en/ir/library/co.html
+seven_bank_stake,0.399,share,2025-06-24,Held by Seven-Eleven Japan after tendering into Seven Bank's buyback; Seven Bank became an equity-method affiliate,https://filingreader.com/news-wire/tokyo/2025-06-19/seven-i-holdings-to-deconsolidate-seven-bank
+seven_bank_market_cap,394666,million yen,2026-10-16,Yahoo Finance (8410.T),https://finance.yahoo.com/quote/8410.T
+york_holdings_deal_value,814700,million yen,2025-09-01,Bain Capital deal value; Seven & i reinvested for a minority stake (reports: about 35%; with founding family about 40%),https://www.retail-insight-network.com/news/seven-i-absorption-type-split-york-holdings/
+peer_ev_ebitda_murphy_usa,10.2,x EBITDA,2026-10-16,Yahoo Finance (MUSA),https://finance.yahoo.com/quote/MUSA
+peer_ev_ebitda_couche_tard,13.6,x EBITDA,2026-10-16,Yahoo Finance (ATD.TO); IFRS 16 basis (leases in EBITDA and debt),https://finance.yahoo.com/quote/ATD.TO
+peer_ev_ebitda_caseys,17.4,x EBITDA,2026-10-16,Yahoo Finance (CASY); high-growth outlier,https://finance.yahoo.com/quote/CASY
 couche_tard_withdrawal,,,2025-07-16,Shares fell over 9% to below 2008 yen on the news,https://insideretail.asia/2025/07/16/seven-i-loses-couche-tard-47-billion-takeover-bid/
 seven_i_us_ipo_postponed,,,2026-04-09,7-Eleven Inc. listing pushed to fiscal 2027 at the earliest,https://www.convenience.org/Media/Daily/2026/April/10/1-Seven-i-Delays-North-American-IPO_Finance
-lawson_tender_offer_per_share,10360,yen,2024-02-06,KDDI tender offer; 16% premium to prior close of 8913 yen,https://www.cnbc.com/2024/02/07/lawson-faces-privatization-bid-from-kddi.html
-lawson_tender_offer_period,,,2024-03-28 to 2024-04-25,Mitsubishi Corp kept its 50% and did not tender,https://www.nippon.com/en/news/yjj2024042601043/
-seven_i_domestic_cvs_revenue_9m,691476,million yen,FY2025 Q1-Q3 (Mar-Nov 2025),Domestic convenience store operations segment,https://www.7andi.com/en/ir/file/library/kt/pdf/2026_0108kte.pdf
-seven_i_domestic_cvs_operating_income_9m,178530,million yen,FY2025 Q1-Q3 (Mar-Nov 2025),Domestic convenience store operations segment,https://www.7andi.com/en/ir/file/library/kt/pdf/2026_0108kte.pdf
-sej_chain_store_sales_9m,4132555,million yen,FY2025 Q1-Q3 (Mar-Nov 2025),Total sales of company-run and franchise stores,https://www.7andi.com/en/ir/file/library/kt/pdf/2026_0108kte.pdf
