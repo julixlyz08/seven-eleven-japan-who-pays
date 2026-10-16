@@ -1,0 +1,6 @@
+date,event,car_pct,low_95,high_95,t_stat,beta,raw_return_pct,market_return_pct,price_before
+2024-08-19,Couche-Tard's approach disclosed,16.951,11.873,22.029,6.542,0.531,16.33,2.484,1647.545
+2024-10-09,"Raised offer (2,600 yen) reported",3.964,-4.878,12.805,0.879,0.513,3.15,-1.408,2092.463
+2025-03-06,"Own plan: York sale, new CEO, US listing",3.577,-6.104,13.258,0.724,0.442,3.718,-0.281,2110.539
+2025-07-17,Couche-Tard withdraws,-12.454,-22.842,-2.066,-2.35,0.668,-11.667,0.324,2115.346
+2026-04-09,Results; US listing postponed,-11.729,-17.618,-5.84,-3.904,0.722,-10.354,1.805,2161.795

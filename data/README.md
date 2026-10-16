@@ -24,7 +24,7 @@ All files were downloaded on October 15, 2026.
 | `cpi/` | `01g` | Consumer price index, 2020 base, via [e-Stat](https://www.e-stat.go.jp/stat-search/files?toukei=00200573): by category, and by item (includes bento, onigiri, cigarettes) | Jan 1970 – Aug 2026, CSV (Shift-JIS) | Part 2 |
 | `population/` | `01g` | Population estimates by prefecture via [e-Stat](https://www.e-stat.go.jp/stat-search/files?toukei=00200524), total and by age group | Oct 1, 2024 (latest yearly release) | Part 1 |
 | `stations/` | `01h` | [MLIT National Land Numerical Info S12](https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-S12-2024.html): every railway station with daily passenger counts (GeoJSON) | S12-25 release | Part 1 |
-| `seven_i_reports/` | `01i` | [Seven & i Corporate Outline FY2025](https://www.7andi.com/en/ir/library/co.html): 7-Eleven Japan yearly figures (sales by product group, margins, store types, openings) and the major chains' store counts | FY2015 – FY2025, PDF | Parts 2–4 |
+| `seven_i_reports/` | `01i` | [Seven & i Corporate Outline FY2025](https://www.7andi.com/en/ir/library/co.html): 7-Eleven Japan yearly figures (sales by product group, margins, store types, openings), the major chains' store counts, franchise terms and the consolidated balance sheet; plus [segment Excel files](https://www.7andi.com/en/ir/financial/segment.html) (operating income and depreciation by business) | FY2015 – FY2025 | Parts 2–4 |
 | `boundaries/` | `01j` | Simplified prefecture boundaries (GeoJSON) from [Global Map Japan](https://www.gsi.go.jp/kankyochiri/gm_jpn.html) (GSI), via [dataofjapan/land](https://github.com/dataofjapan/land). Free for non-commercial use with credit | 47 prefectures | Part 1 |
 | `population_grid/` | `01k` | 2020 census population on the 1 km grid via [e-Stat](https://www.e-stat.go.jp/gis) (T001140): residents by age group, households, one-person households. Only map tiles containing a store (127) | 2020 census | Part 1 |
 | `sej_prefecture/` | by hand | [7-Eleven store map](https://www.sej.co.jp/company/tenpo.html) image, transcribed into `data/manual/` | End of Sep 2026 | Part 1 |
@@ -36,7 +36,7 @@ All files were downloaded on October 15, 2026.
 | `sej_stores_by_prefecture_2026-09.csv` | 7-Eleven stores in each of the 47 prefectures, end of September 2026 | Sums to 21,956, the total printed on the map |
 | `franchise_terms.csv` | Type A, Type C and new (2027) contract terms: charge rates, reductions (which depend on whether monthly gross profit is above ¥5.5M), utility and waste cost shares, minimum guarantees, contract length | Type C tiers and new terms from the official release PDF; reductions and guarantees from the Corporate Outline FY2025 (p. 21) |
 | `store_cost_assumptions.csv` | Low / central / high values for a store's staffing, pay, utilities, discarded stock and other costs (Part 3) | Not published anywhere; each row states its basis |
-| `valuation_inputs.csv` | Couche-Tard and KDDI–Lawson offer prices and dates, Seven & i domestic segment results | Each row links its source |
+| `valuation_inputs.csv` | Share count, debt, cash, minority interests, Seven Bank and York stakes, peer multiples, Couche-Tard and KDDI–Lawson offers | Each row links its source; Yahoo Finance values are a snapshot dated 16 Oct 2026 |
 
 ## Cleaned tables (`data/processed/`)
 
