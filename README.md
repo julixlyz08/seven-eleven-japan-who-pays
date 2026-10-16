@@ -306,7 +306,7 @@ A market model compares Seven & i's daily return with the Japanese market's (TOP
 
 ## Data and method notes
 
-Sources, download scripts and the traps found in the raw files are documented in [data/README.md](data/README.md). Scripts run in order from `src/`: `01*` download, `02*` clean, then the analysis: `07-09` Part 1, `03-06` Part 2, `10` Part 3 (store model in `franchise_model.py`), `11-12` Part 4.
+Sources, download scripts and the traps found in the raw files are documented in [data/README.md](data/README.md). Scripts run in order from `src/`: `01*` download, `02*` clean, then the analysis: `03-05` Part 1, `06-09` Part 2, `10` Part 3 (store model in `franchise_model.py`), `11-12` Part 4.
 
 | Term | Definition |
 |---|---|
