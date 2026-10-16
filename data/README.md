@@ -34,11 +34,21 @@ All files were downloaded on October 15, 2026.
 | `franchise_terms.csv` | Type A, Type C and new (2027) contract terms: charge rates, reductions, utility and waste cost shares, minimum guarantee, contract length | Type C and new terms from the official release PDF |
 | `valuation_inputs.csv` | Couche-Tard and KDDI–Lawson offer prices and dates, Seven & i domestic segment results | Each row links its source |
 
+## Cleaned tables (`data/processed/`)
+
+| File | Script | What it holds | Checks it passes |
+|---|---|---|---|
+| `seven_eleven_japan_monthly.csv` | `02a` | 7-Eleven Japan, Mar 2015 – Sep 2026 (139 months): same-store sales, customers and spend, total-store sales (all % change vs. same month last year), store count | No missing months; overlapping files agree; sales growth = customers × spend to within 0.14 points |
+| `jfa_convenience_monthly.csv` | `02b` | All JFA member chains, Jan 2005 – Aug 2026 (260 months): sales, stores, customers, spend per customer (levels and % change), all stores and same stores | 2026 reports' "last year" figures match the time series to within 0.05%; sales = customers × spend to within 0.01% |
+
 ## Things to know before using the data
 
 - **Seven & i's monthly store count excludes Okinawa.** The prefecture map totals 21,956, and without Okinawa's 211 stores it is exactly the 21,745 in the September 2026 monthly file. Okinawa is run by a separate subsidiary (7-Eleven Okinawa).
-- **Seven & i's monthly figures are % vs. the same month last year, not yen.** Levels must be built by chaining the changes or taken from annual reports. Fiscal FY2024 has three file versions (March, April, July releases), probably restatements; compare them before use.
-- **Seven & i's fiscal year runs March to February.** The file named FY2026 covers March 2026 – February 2027.
+- **Seven & i's monthly figures are % vs. the same month last year, not yen.** Levels must be built by chaining the changes or taken from annual reports.
+- **Seven & i's file names changed convention.** "FY2016" ends February 2016, but "FY2025" ends February 2026. The three "FY2024" files are two different years (one ends Feb 2024, two end Feb 2025). The cleaner reads each year from the sheet's own dates.
+- **In the FY2021–22 files, 7-Eleven Japan's first row also repeats the previous January–February** (the header is shared with the US business's calendar year). The cleaner skips those columns.
+- **JFA same-store figures are as published.** They compare stores open in both years, so "last year" differs from report to report and can't be rebuilt from the levels.
+- **Some 2026 JFA reports scramble their text.** The cleaner reads figures by position on the page instead.
 - **JFA counts all member chains, 7-Eleven included.** "Everyone except 7-Eleven" has to be derived.
 - **OSM covers about 80% of real stores** (17,617 name matches for 7-Eleven vs. 21,956 official). Coverage must be checked by prefecture before comparing densities.
 - **Scraping notes:** JFA only returns PDFs to browser-like requests with the page as referer; Overpass rejects browser-like requests (406) and wants a named client; METI's own site blocks scripts, so its files come from e-Stat.
